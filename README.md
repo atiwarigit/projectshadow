@@ -2,11 +2,11 @@
 
 A mutual-aid room on the ZClub porch. Privacy is the default, kindness is the action.
 
-**Live (this branch):** [projectshadow-git-cursor-live-601d11-animesh-projects-projects.vercel.app](https://projectshadow-git-cursor-live-601d11-animesh-projects-projects.vercel.app)
+**Live (this branch):** https://projectshadow-git-cursor-live-601d11-animesh-projects-projects.vercel.app
 
-GitHub is connected to the Vercel project `projectshadow`. Every push deploys a preview. Merging to `main` updates production.
+GitHub is connected to the Vercel project `projectshadow`. Pushes create previews. Merge to `main` updates production at https://projectshadow-animesh-projects-projects.vercel.app
 
-GitHub Pages URL (after Pages is enabled): [atiwarigit.github.io/projectshadow](https://atiwarigit.github.io/projectshadow/)
+To also serve GitHub Pages at https://atiwarigit.github.io/projectshadow/ : repo **Settings → Pages → Deploy from a branch → `main` → `/`**.
 
 One self-contained landing page. No build step, no dependencies, no server.
 
