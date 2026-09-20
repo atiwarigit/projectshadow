@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Kind Shadow Club — quiet power. Privacy is the default, kindness is the action. Mutual aid on the porch, no ranks, no spotlight.">
+<meta property="og:title" content="Kind Shadow Club">
+<meta property="og:description" content="We move quiet. We leave people better than we found them.">
+<meta property="og:type" content="website">
+<title>Kind Shadow Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ink:#060a12;
+    --panel:#0c1524;
+    --panel-2:#0f1c30;
+    --line:#1d2a40;
+    --kraft:#c69a5f;
+    --kraft-soft:#d8b884;
+    --amber:#e8b25a;
+    --cyan:#5ec7d4;
+    --text:#e8e3d5;
+    --muted:#8a96aa;
+    --dim:#5c6a80;
+    --disp:'Oswald',Impact,sans-serif;
+    --serif:'Newsreader',Georgia,serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --gutter:clamp(20px,5vw,72px);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ink);color:var(--text);
+    font-family:var(--serif);font-size:18px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+
+  /* scanline + grain atmosphere */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0,rgba(0,0,0,.16) 1px,transparent 1px,transparent 3px);
+    mix-blend-mode:multiply;opacity:.5;
+  }
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .accent-dot{display:inline-block;width:8px;height:8px;background:var(--cyan);margin-right:10px;vertical-align:middle}
+
+  h1,h2,h3{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.01em;margin:0;text-wrap:balance;line-height:.98}
+
+  /* ---- nav ---- */
+  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+    background:rgba(6,10,18,.82);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;gap:20px;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);text-transform:uppercase;font-weight:600;letter-spacing:.06em;font-size:19px}
+  .nav-links{margin-left:auto;display:flex;gap:26px;align-items:center;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a.step{color:var(--ink);background:var(--kraft);padding:9px 16px;letter-spacing:.12em}
+  .nav-links a.step:hover{background:var(--kraft-soft)}
+  @media(max-width:720px){.nav-links a:not(.step){display:none}}
+
+  /* ---- hero ---- */
+  .hero{position:relative;padding-block:clamp(40px,7vw,84px) clamp(48px,8vw,96px)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .hero h1{font-size:clamp(44px,8.5vw,92px);letter-spacing:.005em}
+  .hero h1 .thin{-webkit-text-stroke:1px var(--kraft);color:transparent}
+  .hero p.lede{font-family:var(--serif);font-size:clamp(17px,2vw,21px);color:#cfc9ba;max-width:34ch;margin:26px 0 0}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:14px 22px;border:1px solid var(--line);color:var(--text);transition:.18s}
+  .btn.solid{background:var(--kraft);color:var(--ink);border-color:var(--kraft)}
+  .btn.solid:hover{background:var(--kraft-soft);border-color:var(--kraft-soft)}
+  .btn.ghost:hover{border-color:var(--kraft);color:var(--kraft-soft)}
+  .heroart{position:relative;aspect-ratio:1/1;max-width:100%}
+  .heroart svg{width:100%;height:100%;display:block}
+  @media(prefers-reduced-motion:no-preference){
+    .bulb-on{animation:flick 5.5s ease-in-out infinite}
+    @keyframes flick{0%,100%{opacity:.9}45%{opacity:.62}48%{opacity:.95}}
+  }
+
+  /* ---- section frame ---- */
+  section{padding-block:clamp(52px,8vw,104px);border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:38px}
+  .sec-head h2{font-size:clamp(30px,4.6vw,50px)}
+  .sec-head .eyebrow{margin-left:auto}
+
+  /* ---- ethos triad ---- */
+  .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:760px){.triad{grid-template-columns:1fr}}
+  .triad .cell{background:var(--panel);padding:30px 28px 34px;display:flex;flex-direction:column;gap:12px}
+  .triad .n{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cyan)}
+  .triad h3{font-size:26px;color:var(--kraft-soft)}
+  .triad p{margin:0;font-size:16px;color:var(--muted);line-height:1.55}
+
+  /* ---- drops list ---- */
+  .drops{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  @media(max-width:820px){.drops{grid-template-columns:1fr}}
+  .drops p.body{font-size:18px;color:#cbc6b8;margin:0 0 22px}
+  .droplist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .droplist li{display:flex;gap:16px;padding:16px 0;border-top:1px dashed var(--line);align-items:baseline}
+  .droplist li:last-child{border-bottom:1px dashed var(--line)}
+  .droplist .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--amber);white-space:nowrap;min-width:104px}
+  .droplist .v{color:var(--text);font-size:16.5px}
+  .panelcard{background:var(--panel);border:1px solid var(--line);padding:30px}
+  .panelcard h3{font-size:22px;color:var(--kraft-soft);margin-bottom:8px}
+  .receipt{font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9}
+  .receipt .row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--line);padding:7px 0}
+  .receipt .row span:last-child{color:var(--kraft-soft)}
+  .receipt .anon{color:var(--dim)}
+
+  /* ---- pool flow ---- */
+  .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;margin-top:8px}
+  @media(max-width:760px){.flow{grid-template-columns:1fr;gap:14px}.flow .arrow{transform:rotate(90deg);justify-self:center}}
+  .flow .node{background:var(--panel-2);border:1px solid var(--line);padding:24px}
+  .flow .node .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .flow .node ul{margin:12px 0 0;padding-left:18px;color:#cbc6b8;font-size:15.5px;line-height:1.5}
+  .flow .node.pool{border-color:var(--kraft);box-shadow:inset 0 0 44px rgba(198,154,95,.08)}
+  .flow .node.pool .lbl{color:var(--kraft-soft)}
+  .flow .arrow{display:flex;align-items:center;justify-content:center;color:var(--kraft);font-family:var(--mono);font-size:22px}
+
+  /* ---- credits reframe ---- */
+  .credits-two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:640px){.credits-two{grid-template-columns:1fr}}
+  .credits-two .col{background:var(--panel);padding:28px}
+  .credits-two .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .credits-two .high .tag{color:var(--cyan)}
+  .credits-two ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:16px}
+  .credits-two li{display:flex;gap:11px}
+  .credits-two li::before{content:"—";color:var(--kraft);flex:none}
+  .noboard{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.04em;border-left:2px solid var(--cyan);padding-left:14px}
+
+  /* ---- manifesto ---- */
+  .manifesto{text-align:center}
+  .manifesto blockquote{margin:0 auto;max-width:20ch;font-family:var(--disp);text-transform:uppercase;font-weight:600;
+    font-size:clamp(38px,7vw,78px);line-height:.98;color:var(--text)}
+  .manifesto blockquote .glow{color:var(--amber)}
+  .manifesto .sig{font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:28px}
+
+  /* ---- join ---- */
+  .join{text-align:center;background:
+    radial-gradient(120% 140% at 50% 0%,rgba(232,178,90,.10) 0%,transparent 55%),var(--ink)}
+  .join h2{font-size:clamp(34px,5.5vw,60px)}
+  .join p{color:var(--muted);max-width:44ch;margin:18px auto 30px;font-size:18px}
+  .join .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .doorline{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-top:40px}
+
+  /* ---- footer ---- */
+  footer{border-top:1px solid var(--line);padding-block:40px;background:var(--panel)}
+  .foot-in{display:flex;flex-wrap:wrap;gap:22px 40px;justify-content:space-between;align-items:flex-start}
+  .foot-brand{font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-size:18px;display:flex;align-items:center;gap:10px}
+  .guardrails{font-family:var(--mono);font-size:11.5px;line-height:1.9;color:var(--dim);letter-spacing:.04em;max-width:52ch}
+  .guardrails b{color:var(--muted);font-weight:500}
+  .earsmark{color:var(--kraft)}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <svg class="earsmark" width="34" height="20" viewBox="0 0 34 20" aria-hidden="true"><path d="M3 18 L9 3 L17 13 L25 3 L31 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      Kind Shadow Club
+    </a>
+    <nav class="nav-links">
+      <a href="#ethos">Ethos</a>
+      <a href="#drops">Shadow drops</a>
+      <a href="#pool">The pool</a>
+      <a href="#credits">Credits</a>
+      <a class="step" href="#join">Step in</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" style="border-top:none">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><span class="accent-dot"></span>Optional bag · Optional face · The lift is the point</div>
+        <h1 style="margin-top:22px">We move quiet.<br><span class="thin">We leave people</span><br>better than<br>we found them.</h1>
+        <p class="lede">A shadow club on the porch. Privacy is the default, kindness is the action, and the help goes out before the story does. No ranks. No spotlight.</p>
+        <div class="cta">
+          <a class="btn solid" href="#join">Step into the shadow</a>
+          <a class="btn ghost" href="#drops">How a drop works</a>
+        </div>
+      </div>
+
+      <div class="heroart" role="img" aria-label="Two figures under a string light on a dark porch, a small kraft print passing from one hand to the other.">
+        <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="pool" cx="50%" cy="34%" r="60%">
+              <stop offset="0" stop-color="#e8b25a" stop-opacity=".16"/>
+              <stop offset="100%" stop-color="#e8b25a" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+            <symbol id="bag" viewBox="0 0 200 240">
+              <path d="M30 40 L45 28 L60 40 L75 26 L90 40 L105 29 L120 40 L135 27 L150 40 L163 30 L170 40 L178 232 L22 232 Z" fill="#b98f56"/>
+              <path d="M52 44 L46 230 M148 44 L154 230" stroke="#8a6536" stroke-width="3" fill="none"/>
+              <path d="M30 40 L170 40" stroke="#6f5127" stroke-width="2"/>
+              <ellipse cx="74" cy="120" rx="14" ry="9" fill="#05080f"/>
+              <ellipse cx="126" cy="120" rx="14" ry="9" fill="#05080f"/>
+            </symbol>
+          </defs>
+
+          <rect width="520" height="520" fill="#080d17"/>
+          <rect width="520" height="520" fill="url(#pool)"/>
+
+          <!-- string light -->
+          <path d="M-10 92 Q170 168 300 96 Q400 44 540 104" fill="none" stroke="#26344c" stroke-width="2"/>
+          <g fill="#3a4a66">
+            <circle class="bulb" cx="70" cy="126" r="5"/>
+            <circle cx="150" cy="150" r="5"/>
+            <circle cx="300" cy="96" r="5"/>
+            <circle cx="392" cy="72" r="5"/>
+            <circle cx="470" cy="92" r="5"/>
+          </g>
+          <circle class="bulb-on" cx="230" cy="150" r="10" fill="#e8b25a" filter="url(#soft)"/>
+          <circle class="bulb-on" cx="230" cy="150" r="4.5" fill="#ffd89a"/>
+          <circle cx="392" cy="72" r="8" fill="#5ec7d4" opacity=".5" filter="url(#soft)"/>
+
+          <!-- floor line -->
+          <path d="M0 430 L520 430" stroke="#e8b25a" stroke-opacity=".22" stroke-width="2"/>
+
+          <!-- LEFT figure: face visible, giving -->
+          <g transform="translate(150,300)">
+            <path d="M-92 130 Q-90 12 -34 0 L34 0 Q90 12 92 130 Z" fill="#14203a" stroke="#e8b25a" stroke-opacity=".22"/>
+            <rect x="-16" y="-18" width="32" height="24" fill="#9c7458"/>
+            <circle cx="0" cy="-52" r="42" fill="#b8896a"/>
+            <path d="M-44 -54 Q-42 -100 0 -102 Q42 -100 44 -54 Q28 -80 0 -82 Q-28 -80 -44 -54 Z" fill="#0f1a2c"/>
+            <!-- extended arm toward center -->
+            <path d="M70 40 Q120 44 150 70" stroke="#14203a" stroke-width="26" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- RIGHT figure: bag on, receiving -->
+          <g transform="translate(372,300)">
+            <path d="M-92 130 Q-90 12 -34 0 L34 0 Q90 12 92 130 Z" fill="#101a30" stroke="#5ec7d4" stroke-opacity=".16"/>
+            <rect x="-15" y="-20" width="30" height="24" fill="#9c7458"/>
+            <use href="#bag" x="-62" y="-150" width="124" height="149"/>
+            <path d="M-70 44 Q-118 48 -150 70" stroke="#101a30" stroke-width="26" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- the passed print/envelope, centered between hands -->
+          <g transform="translate(260,368) rotate(-7)">
+            <rect x="-30" y="-20" width="60" height="40" fill="#d8b884"/>
+            <path d="M-30 -20 L0 4 L30 -20" fill="none" stroke="#8a6536" stroke-width="2"/>
+            <rect x="-30" y="-20" width="60" height="40" fill="none" stroke="#6f5127" stroke-width="1.5"/>
+          </g>
+          <circle cx="260" cy="368" r="46" fill="#e8b25a" opacity=".10" filter="url(#soft)"/>
+
+          <rect width="520" height="520" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETHOS -->
+  <section id="ethos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>The three moves</h2>
+        <span class="eyebrow">What the club runs on</span>
+      </div>
+      <div class="triad">
+        <div class="cell">
+          <span class="n">01</span>
+          <h3>Privacy is the default</h3>
+          <p>Bag on, bag off, face in the open — all the same table. You never owe a name to be here or to be helped.</p>
+        </div>
+        <div class="cell">
+          <span class="n">02</span>
+          <h3>Kindness is the action</h3>
+          <p>Not a slogan on the wall. The club exists to move real help — quietly, before anyone tells the story of it.</p>
+        </div>
+        <div class="cell">
+          <span class="n">03</span>
+          <h3>No spotlight</h3>
+          <p>No ranks. No leaderboard of givers. The lift matters; who did it can stay in shadow if they want.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHADOW DROPS -->
+  <section id="drops">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Shadow drops</h2>
+        <span class="eyebrow">How help moves</span>
+      </div>
+      <div class="drops">
+        <div>
+          <p class="body">The desk periodically runs a <b>shadow drop</b> — a quiet round of aid pulled from the community pool. Anonymous or credited is the receiver's call, never a condition of getting it. Some drops go to a person; some go to whoever lifted a person.</p>
+          <ul class="droplist">
+            <li><span class="k">GAS MONEY</span><span class="v">A small transfer to cover the thing that can't wait.</span></li>
+            <li><span class="k">PRINT TOOLS</span><span class="v">Access, credits, or software so someone can do the work.</span></li>
+            <li><span class="k">ZEC SUPPORT</span><span class="v">A small amount of ZEC, sent shielded or transparent.</span></li>
+            <li><span class="k">RESOURCE LINKS</span><span class="v">The right doc, the right person, the right door.</span></li>
+            <li><span class="k">PUBLIC CREDIT</span><span class="v">A named thank-you for someone who helped someone else.</span></li>
+          </ul>
+        </div>
+        <div class="panelcard">
+          <h3>A drop, from the outside</h3>
+          <p style="color:var(--muted);font-size:15px;margin:0 0 16px">This is what the porch sees. Never who needed it.</p>
+          <div class="receipt">
+            <div class="row"><span>DROP · 0142</span><span>gas money</span></div>
+            <div class="row"><span class="anon">to (anon)</span><span>sent</span></div>
+            <div class="row"><span>DROP · 0143</span><span>print tools</span></div>
+            <div class="row"><span class="anon">to (anon)</span><span>sent</span></div>
+            <div class="row"><span>CREDIT</span><span>@____ lifted a stranger</span></div>
+            <div class="row" style="border-bottom:none"><span class="anon">pool balance</span><span>quiet</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE POOL -->
+  <section id="pool">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>The community pool</h2>
+        <span class="eyebrow">Where it comes from · where it goes</span>
+      </div>
+      <div class="flow">
+        <div class="node">
+          <div class="lbl">Fed by</div>
+          <ul>
+            <li>$ZCAT tax / prints</li>
+            <li>Donations the desk accepts</li>
+            <li>Investments the desk accepts</li>
+          </ul>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node pool">
+          <div class="lbl">The pool</div>
+          <ul>
+            <li>Held quietly by the desk</li>
+            <li>Balance shown, not spotlit</li>
+            <li>Rotates with the desk chair</li>
+          </ul>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="node">
+          <div class="lbl">Goes out as</div>
+          <ul>
+            <li>Shadow drops</li>
+            <li>Anonymous or credited aid</li>
+            <li>Public credit for a lift</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em;margin-top:26px;border-left:2px solid var(--kraft);padding-left:16px;max-width:60ch">
+        We publish what went out. We never publish who needed it. The pool is a promise to move help, not a fund with a yield.
+      </p>
+    </div>
+  </section>
+
+  <!-- CREDITS REFRAME -->
+  <section id="credits">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Credits, reweighted</h2>
+        <span class="eyebrow">The lift ranks highest</span>
+      </div>
+      <div class="credits-two">
+        <div class="col">
+          <div class="tag">Still earns a credit</div>
+          <ul>
+            <li>Sourced a real print</li>
+            <li>Caught a clone CA, posted the house one</li>
+            <li>Rewrote a line in your own words</li>
+            <li>Put the bag on and said so</li>
+          </ul>
+        </div>
+        <div class="col high">
+          <div class="tag">Earns the highest credit</div>
+          <ul>
+            <li>Covered someone's gas money</li>
+            <li>Handed a stranger the tool they needed</li>
+            <li>Sat with someone through the hard part</li>
+            <li>Lifted someone and told no one</li>
+          </ul>
+        </div>
+      </div>
+      <p class="noboard">There is still no leaderboard of givers. The highest credits are the quietest ones — recorded, never ranked. A hall of fame is just a spotlight with better lighting.</p>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="wrap">
+      <span class="eyebrow">The voice</span>
+      <blockquote style="margin-top:26px">We move quiet.<br>We leave people <span class="glow">better</span><br>than we found them.</blockquote>
+      <div class="sig">Dry · short · protective — never a sermon</div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="join" id="join">
+    <div class="wrap">
+      <span class="eyebrow"><span class="accent-dot"></span>The door</span>
+      <h2 style="margin-top:20px">Step into the shadow</h2>
+      <p>Take a bag or keep your face. Either way, you're in the room. Watch for the next drop, or feed the pool. The only thing we ask is the lift.</p>
+      <div class="cta">
+        <a class="btn solid" href="#top">Take a bag</a>
+        <a class="btn ghost" href="#pool">Feed the pool</a>
+      </div>
+      <div class="doorline">You do not owe a name.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">
+        <svg class="earsmark" width="30" height="18" viewBox="0 0 34 20" aria-hidden="true"><path d="M3 18 L9 3 L17 13 L25 3 L31 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        Kind Shadow Club
+      </div>
+      <div style="font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.14em;margin-top:12px">QUIET POWER · SINCE THE PORCH OPENED</div>
+    </div>
+    <p class="guardrails">
+      <b>Guardrails, unchanged.</b> Social only — no coordinated buying, no trading to juice the tax. Credits are not tokens, not points you can sell, not a passport. Not official Zcash. Not shielded. Not a promise of returns. Not financial advice. This is how someone gets lifted and gets to stay in shadow.
+    </p>
+  </div>
+</footer>
+</body>
+</html>
